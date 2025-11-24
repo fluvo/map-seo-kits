@@ -50,6 +50,7 @@
 
   // ★ 自訂橘色點的文字標籤（白底＋陰影）
   class OrangeLabel extends google.maps.OverlayView {
+  
     constructor(position, text, map) {
       super();
       this.position = position;
@@ -101,6 +102,11 @@
     setPosition(position) {
       this.position = position;
       this.draw();
+    }
+
+    setText(text) {
+      this.text = text;
+      if (this.div) this.div.textContent = text;
     }
   }
 
@@ -214,16 +220,88 @@
     const block = document.createElement('div');
     block.style.margin = '8px 0';
 
-    // 名稱在上面一行
+    // 上面一行：名稱 + 編輯按鈕
+    const headerRow = document.createElement('div');
+    headerRow.style.display = 'flex';
+    headerRow.style.alignItems = 'center';
+
     const nameEl = document.createElement('div');
     nameEl.textContent = o.name;
     nameEl.style.fontWeight = '500';
-    nameEl.style.marginBottom = '2px';
+    nameEl.style.flex = '1';
 
-    // slider + 距離數值（右側）
+    const editBtn = document.createElement('button');
+    editBtn.type = 'button';
+    editBtn.textContent = '✏️';
+    editBtn.style.fontSize = '11px';
+    editBtn.style.padding = '0 4px';
+    editBtn.style.marginLeft = '6px';
+    editBtn.style.cursor = 'pointer';
+    editBtn.style.border = '1px solid #ddd';
+    editBtn.style.borderRadius = '4px';
+    editBtn.style.background = '#f8f8f8';
+
+    // 點 ✏️ → 名稱變成 input，可按 Enter 確認
+    editBtn.onclick = () => {
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = o.name;
+      input.style.fontSize = '11px';
+      input.style.flex = '1';
+      input.style.padding = '1px 3px';
+      input.style.border = '1px solid #ccc';
+      input.style.borderRadius = '3px';
+
+      // 用 input 暫時取代 nameEl
+      headerRow.replaceChild(input, nameEl);
+      input.focus();
+      input.select();
+
+      const finish = (commit) => {
+        let newName = o.name;
+        if (commit) {
+          const trimmed = input.value.trim();
+          if (trimmed) newName = trimmed;
+        }
+
+        // 更新物件本身
+        o.name = newName;
+        nameEl.textContent = newName;
+
+        // 更新 marker title
+        if (o.marker) o.marker.setTitle(newName);
+
+        // 更新地圖上的白底 label
+        if (o.labelOverlay && typeof o.labelOverlay.setText === 'function') {
+          o.labelOverlay.setText(newName);
+        }
+
+        // 換回顯示 div
+        headerRow.replaceChild(nameEl, input);
+
+        // 讓 console 輸出的 JSON 也用新名稱
+        printOrangeState();
+      };
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          finish(true);
+        } else if (e.key === 'Escape') {
+          finish(false);
+        }
+      });
+
+      // 失焦也當作確認（用現在 input 的內容）
+      input.addEventListener('blur', () => finish(true));
+    };
+
+    headerRow.append(nameEl, editBtn);
+
+    // 下面一行：slider + 距離
     const row = document.createElement('div');
     row.style.display = 'flex';
     row.style.alignItems = 'center';
+    row.style.marginTop = '2px';
 
     const input = document.createElement('input');
     input.type = 'range';
@@ -236,7 +314,7 @@
     const valueEl = document.createElement('span');
     valueEl.textContent = `${Math.round(o.circle.getRadius())}m`;
     valueEl.style.marginLeft = '8px';
-    valueEl.style.minWidth = '48px'; // 避免數字跳動寬度
+    valueEl.style.minWidth = '48px'; // 避免寬度跳動
 
     input.oninput = () => {
       const val = Math.round(Number(input.value));
@@ -246,7 +324,7 @@
     };
 
     row.append(input, valueEl);
-    block.append(nameEl, row);
+    block.append(headerRow, row);
     control.append(block);
   }
 
