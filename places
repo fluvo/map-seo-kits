@@ -1,0 +1,13 @@
+[
+  { jp: "六本木", en: "Roppongi", lat: 35.6628, lng: 139.7310 },
+  { jp: "麻布十番", en: "Azabu-juban", lat: 35.6546, lng: 139.7351 },
+  { jp: "青山", en: "Aoyama", lat: 35.6646, lng: 139.7220 },
+  { jp: "表參道", en: "Omotesando", lat: 35.6655, lng: 139.7128 },
+  { jp: "原宿", en: "Harajuku", lat: 35.6702, lng: 139.7020 },
+  { jp: "代官山", en: "Daikanyamacho", lat: 35.6492, lng: 139.7036 },
+  { jp: "惠比壽", en: "Ebisu", lat: 35.6467, lng: 139.7100 },
+  { jp: "中目黑", en: "Naka-meguro", lat: 35.6432, lng: 139.6983 },
+  { jp: "三軒茶屋", en: "Sangenjaya", lat: 35.6435, lng: 139.6686 },
+  { jp: "用賀", en: "Yoga", lat: 35.6255, lng: 139.6301 },
+  { jp: "二子玉川", en: "Futako-Tamagawa", lat: 35.6101, lng: 139.6271 },
+]
