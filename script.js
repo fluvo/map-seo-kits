@@ -48,6 +48,62 @@
     clickableIcons: false, streetViewControl: false, mapTypeControl: false
   });
 
+  // ★ 自訂橘色點的文字標籤（白底＋陰影）
+  class OrangeLabel extends google.maps.OverlayView {
+    constructor(position, text, map) {
+      super();
+      this.position = position;
+      this.text = text;
+      this.div = null;
+      this.setMap(map);
+    }
+
+    onAdd() {
+      const div = document.createElement('div');
+      div.style.position = 'absolute';
+      // 貼在 marker 上方一點點
+      div.style.transform = 'translate(-50%, -100%) translateY(-16px)';
+      div.style.background = '#ffffff';
+      div.style.borderRadius = '4px';
+      div.style.padding = '2px 6px';
+      div.style.fontSize = '11px';
+      div.style.fontWeight = '600';
+      div.style.color = '#A94700';
+      div.style.boxShadow = '0 1px 3px rgba(0,0,0,0.35)';
+      div.style.whiteSpace = 'nowrap';
+      div.style.pointerEvents = 'none'; // 不影響地圖操作
+      div.textContent = this.text;
+
+      this.div = div;
+      const panes = this.getPanes();
+      panes.overlayImage.appendChild(div);
+    }
+
+    draw() {
+      if (!this.div) return;
+      const projection = this.getProjection();
+      if (!projection) return;
+
+      const pos = projection.fromLatLngToDivPixel(this.position);
+      if (!pos) return;
+
+      this.div.style.left = pos.x + 'px';
+      this.div.style.top = pos.y + 'px';
+    }
+
+    onRemove() {
+      if (this.div && this.div.parentNode) {
+        this.div.parentNode.removeChild(this.div);
+      }
+      this.div = null;
+    }
+
+    setPosition(position) {
+      this.position = position;
+      this.draw();
+    }
+  }
+
   // hide the close button of info windows
   const style = document.createElement('style');
   style.textContent = `
@@ -58,11 +114,25 @@
   document.head.appendChild(style);
 
   const svgYellowPin = {
-    path:"M12 2C7.58 2 4 5.58 4 10c0 5.25 8 12 8 12s8-6.75 8-12c0-4.42-3.58-8-8-8zm0 11.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z",
-    fillColor:"#F7C948", fillOpacity:1, strokeColor:"#A27F1A", strokeWeight:1, scale:1.3, anchor:new google.maps.Point(12,24)
+    path: "M12 2C7.58 2 4 5.58 4 10c0 5.25 8 12 8 12s8-6.75 8-12c0-4.42-3.58-8-8-8zm0 11.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z",
+    fillColor: "#F7C948",
+    fillOpacity: 1,
+    strokeColor: "#A27F1A",
+    strokeWeight: 1,
+    scale: 1.3,
+    anchor: new google.maps.Point(12,24),
   };
-  const svgOrangeDot = { path: google.maps.SymbolPath.CIRCLE, fillColor:"#FF7A00", fillOpacity:0.95, strokeColor:"#A94700", strokeWeight:1.5, scale:7 };
-
+  const svgOrangeDot = {
+    path: google.maps.SymbolPath.CIRCLE,
+    fillColor: "#FF7A00",
+    fillOpacity: 0.95,
+    strokeColor: "#A94700",
+    strokeWeight: 1.5,
+    scale: 7,
+    // 讓 label 顯示在圓點上方一點
+    labelOrigin: new google.maps.Point(0, -12)
+  };
+  
   const bounds = new google.maps.LatLngBounds();
   const yellowInfoWindows = [];
   const orangeItems = [];
@@ -104,7 +174,18 @@
   // 橘色：圓 + 滑桿控制
   for (const p of groups) {
     const pos = { lat: p.lat, lng: p.lng };
-    const marker = new google.maps.Marker({ map, position: pos, icon: svgOrangeDot, draggable: true, title: p.name });
+
+    const marker = new google.maps.Marker({
+      map,
+      position: pos,
+      icon: svgOrangeDot,
+      draggable: true,
+      title: p.name
+    });
+
+    // ★ 新增：白底＋陰影的小 Label，貼在橘色點上方
+    const labelOverlay = new OrangeLabel(new google.maps.LatLng(pos.lat, pos.lng), p.name, map);
+
     const circle = new google.maps.Circle({
       map, center: pos, radius: p.radiusM,
       strokeColor:'#FF7A00', strokeOpacity:0.9, strokeWeight:2,
@@ -112,21 +193,38 @@
     });
     circle.bindTo('center', marker, 'position');
 
-    orangeItems.push({ name: p.name, marker, circle });
+    // 拖曳時讓 label 跟著位置移動
+    marker.addListener('position_changed', () => {
+      const currentPos = marker.getPosition();
+      if (currentPos) labelOverlay.setPosition(currentPos);
+    });
+
+    orangeItems.push({ name: p.name, marker, circle, labelOverlay });
     bounds.extend(pos);
   }
   if (!bounds.isEmpty()) map.fitBounds(bounds);
 
   // === 橘色控制面板 ===
   const control = document.createElement('div');
-  control.style.cssText = 'position:fixed;bottom:10px;right:10px;background:#fff;padding:10px;border:1px solid #ccc;border-radius:8px;max-height:60vh;overflow-y:auto;font-family:system-ui;font-size:12px;z-index:99999;';
+  control.style.cssText =
+    'position:fixed;bottom:10px;right:10px;background:#fff;padding:10px;border:1px solid #ccc;border-radius:8px;max-height:60vh;overflow-y:auto;font-family:system-ui;font-size:12px;z-index:99999;';
   control.innerHTML = `<b style="font-size:13px;">:large_orange_circle: Orange Radius Control</b><br>`;
+
   for (const o of orangeItems) {
     const block = document.createElement('div');
     block.style.margin = '8px 0';
-    const label = document.createElement('label');
-    label.textContent = `${o.name} (${Math.round(o.circle.getRadius())}m)`;
-    label.style.display = 'block';
+
+    // 名稱在上面一行
+    const nameEl = document.createElement('div');
+    nameEl.textContent = o.name;
+    nameEl.style.fontWeight = '500';
+    nameEl.style.marginBottom = '2px';
+
+    // slider + 距離數值（右側）
+    const row = document.createElement('div');
+    row.style.display = 'flex';
+    row.style.alignItems = 'center';
+
     const input = document.createElement('input');
     input.type = 'range';
     input.min = 100;
@@ -134,14 +232,24 @@
     input.step = 100;
     input.value = o.circle.getRadius();
     input.style.width = '200px';
+
+    const valueEl = document.createElement('span');
+    valueEl.textContent = `${Math.round(o.circle.getRadius())}m`;
+    valueEl.style.marginLeft = '8px';
+    valueEl.style.minWidth = '48px'; // 避免數字跳動寬度
+
     input.oninput = () => {
-      o.circle.setRadius(Number(input.value));
-      label.textContent = `${o.name} (${Math.round(o.circle.getRadius())}m)`;
+      const val = Math.round(Number(input.value));
+      o.circle.setRadius(val);
+      valueEl.textContent = `${val}m`;
       printOrangeState();
     };
-    block.append(label, input);
+
+    row.append(input, valueEl);
+    block.append(nameEl, row);
     control.append(block);
   }
+
   document.body.append(control);
 
   // === Console 輸出 ===
