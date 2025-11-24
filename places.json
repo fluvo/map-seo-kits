@@ -7,7 +7,7 @@
   },
   {
     "name": "麻布十番",
-    "name_en": "Azabu-juban",
+    "name_en": "Azabu-Juban",
     "lat": 35.6546,
     "lng": 139.7351
   },
@@ -18,7 +18,7 @@
     "lng": 139.722
   },
   {
-    "name": "表參道",
+    "name": "表参道",
     "name_en": "Omotesando",
     "lat": 35.6655,
     "lng": 139.7128
@@ -31,27 +31,15 @@
   },
   {
     "name": "代官山",
-    "name_en": "Daikanyamacho",
+    "name_en": "Daikanyama",
     "lat": 35.6492,
     "lng": 139.7036
   },
   {
-    "name": "惠比壽",
+    "name": "恵比寿",
     "name_en": "Ebisu",
     "lat": 35.6467,
     "lng": 139.71
-  },
-  {
-    "name": "中目黑",
-    "name_en": "Naka-meguro",
-    "lat": 35.6432,
-    "lng": 139.6983
-  },
-  {
-    "name": "三軒茶屋",
-    "name_en": "Sangenjaya",
-    "lat": 35.6435,
-    "lng": 139.6686
   },
   {
     "name": "用賀",
@@ -106,5 +94,47 @@
     "lng": 139.736449,
     "name": "赤坂",
     "name_en": "Akasaka"
+  },
+  {
+    "lat": 35.658372,
+    "lng": 139.723052,
+    "name": "西麻布",
+    "name_en": "Nishi-Azabu"
+  },
+  {
+    "lat": 35.651881,
+    "lng": 139.721313,
+    "name": "広尾",
+    "name_en": "Hiroo"
+  },
+  {
+    "lat": 35.640745,
+    "lng": 139.701133,
+    "name": "中目黒",
+    "name_en": "Naka-Meguro"
+  },
+  {
+    "lat": 35.630805,
+    "lng": 139.643842,
+    "name": "桜新町",
+    "name_en": "Sakura-Shimmachi"
+  },
+  {
+    "lat": 35.650183,
+    "lng": 139.684279,
+    "name": "池尻大橋",
+    "name_en": "Ikejiri-Ohashi"
+  },
+  {
+    "lat": 35.640837,
+    "lng": 139.669087,
+    "name": "三軒茶屋",
+    "name_en": "Sangenjaya"
+  },
+  {
+    "lat": 35.63278,
+    "lng": 139.661663,
+    "name": "駒沢大学",
+    "name_en": "Komazawa-Daigaku"
   }
 ]
