@@ -9,5 +9,5 @@
   { jp: "中目黑", en: "Naka-meguro", lat: 35.6432, lng: 139.6983 },
   { jp: "三軒茶屋", en: "Sangenjaya", lat: 35.6435, lng: 139.6686 },
   { jp: "用賀", en: "Yoga", lat: 35.6255, lng: 139.6301 },
-  { jp: "二子玉川", en: "Futako-Tamagawa", lat: 35.6101, lng: 139.6271 },
+  { jp: "二子玉川", en: "Futako-Tamagawa", lat: 35.6101, lng: 139.6271 }
 ]
