@@ -151,11 +151,11 @@
       map,
       position: pos,
       icon: svgYellowPin,
-      title: `${p.en} (${p.jp})`
+      title: `${p.name} (${p.name_en})`
     });
 
     const iw = new google.maps.InfoWindow({
-      content: `<b style="font-size:14px;color:#7a5">${p.jp}</b><div>${p.en}</div>`
+      content: `<b style="font-size:14px;color:#7a5">${p.name}</b><div>${p.name_en}</div>`
     });
 
     // 初始打開
@@ -192,7 +192,7 @@
 
       // 4. 如果你有要重新算 bounds / fitBounds，也可以在這裡做（可選）
       //    目前可以先不動地圖視角，使用上比較直覺
-      console.log('Place removed:', { lat: p.lat, lng: p.lng, jp: p.jp, en: p.en });
+      console.log('Place removed:', { lat: p.lat, lng: p.lng, jp: p.name, en: p.name_en });
     });
 
     yellowInfoWindows.push(iw);
@@ -217,10 +217,10 @@
       ? toNum(latLng.lng())
       : toNum(latLng.lng);
 
-    const jp = prompt('新增地點：輸入日文名稱（jp）', '');
+    const jp = prompt('新增地點：輸入主要名稱', '');
     if (jp === null) return;
 
-    const en = prompt('新增地點：輸入英文名稱（en）', '');
+    const en = prompt('新增地點：輸入英文名稱', '');
     if (en === null) return;
 
     const newPlace = { lat, lng, jp, en };

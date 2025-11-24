@@ -1,110 +1,110 @@
 [
   {
-    "jp": "六本木",
-    "en": "Roppongi",
+    "name": "六本木",
+    "name_en": "Roppongi",
     "lat": 35.6628,
     "lng": 139.731
   },
   {
-    "jp": "麻布十番",
-    "en": "Azabu-juban",
+    "name": "麻布十番",
+    "name_en": "Azabu-juban",
     "lat": 35.6546,
     "lng": 139.7351
   },
   {
-    "jp": "青山",
-    "en": "Aoyama",
+    "name": "青山",
+    "name_en": "Aoyama",
     "lat": 35.6646,
     "lng": 139.722
   },
   {
-    "jp": "表參道",
-    "en": "Omotesando",
+    "name": "表參道",
+    "name_en": "Omotesando",
     "lat": 35.6655,
     "lng": 139.7128
   },
   {
-    "jp": "原宿",
-    "en": "Harajuku",
+    "name": "原宿",
+    "name_en": "Harajuku",
     "lat": 35.6702,
     "lng": 139.702
   },
   {
-    "jp": "代官山",
-    "en": "Daikanyamacho",
+    "name": "代官山",
+    "name_en": "Daikanyamacho",
     "lat": 35.6492,
     "lng": 139.7036
   },
   {
-    "jp": "惠比壽",
-    "en": "Ebisu",
+    "name": "惠比壽",
+    "name_en": "Ebisu",
     "lat": 35.6467,
     "lng": 139.71
   },
   {
-    "jp": "中目黑",
-    "en": "Naka-meguro",
+    "name": "中目黑",
+    "name_en": "Naka-meguro",
     "lat": 35.6432,
     "lng": 139.6983
   },
   {
-    "jp": "三軒茶屋",
-    "en": "Sangenjaya",
+    "name": "三軒茶屋",
+    "name_en": "Sangenjaya",
     "lat": 35.6435,
     "lng": 139.6686
   },
   {
-    "jp": "用賀",
-    "en": "Yoga",
+    "name": "用賀",
+    "name_en": "Yoga",
     "lat": 35.6255,
     "lng": 139.6301
   },
   {
-    "jp": "二子玉川",
-    "en": "Futako-Tamagawa",
+    "name": "二子玉川",
+    "name_en": "Futako-Tamagawa",
     "lat": 35.6101,
     "lng": 139.6271
   },
   {
     "lat": 35.658754,
     "lng": 139.701113,
-    "jp": "渋谷",
-    "en": "Shibuya"
+    "name": "渋谷",
+    "name_en": "Shibuya"
   },
   {
     "lat": 35.671543,
     "lng": 139.764289,
-    "jp": "銀座",
-    "en": "Ginza"
+    "name": "銀座",
+    "name_en": "Ginza"
   },
   {
     "lat": 35.675029,
     "lng": 139.763301,
-    "jp": "有楽町",
-    "en": "Yurakucho"
+    "name": "有楽町",
+    "name_en": "Yurakucho"
   },
   {
     "lat": 35.666313,
     "lng": 139.758559,
-    "jp": "新橋",
-    "en": "Shinbashi"
+    "name": "新橋",
+    "name_en": "Shinbashi"
   },
   {
     "lat": 35.664483,
     "lng": 139.770946,
-    "jp": "築地",
-    "en": "Tsukiji"
+    "name": "築地",
+    "name_en": "Tsukiji"
   },
   {
     "lat": 35.664021,
     "lng": 139.783645,
-    "jp": "月島",
-    "en": "Tsukishima"
+    "name": "月島",
+    "name_en": "Tsukishima"
   },
   {
     "lat": 35.672144,
     "lng": 139.736449,
-    "jp": "赤坂",
-    "en": "Akasaka"
+    "name": "赤坂",
+    "name_en": "Akasaka"
   }
 ]
