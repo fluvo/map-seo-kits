@@ -48,6 +48,15 @@
     clickableIcons: false, streetViewControl: false, mapTypeControl: false
   });
 
+  // hide the close button of info windows
+  const style = document.createElement('style');
+  style.textContent = `
+    #consoleMap .gm-ui-hover-effect {
+      display: none !important;
+    }
+  `;
+  document.head.appendChild(style);
+
   const svgYellowPin = {
     path:"M12 2C7.58 2 4 5.58 4 10c0 5.25 8 12 8 12s8-6.75 8-12c0-4.42-3.58-8-8-8zm0 11.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z",
     fillColor:"#F7C948", fillOpacity:1, strokeColor:"#A27F1A", strokeWeight:1, scale:1.3, anchor:new google.maps.Point(12,24)
@@ -58,12 +67,36 @@
   const yellowInfoWindows = [];
   const orangeItems = [];
 
-  // 黃色：固定座標 + 各自 InfoWindow
+  // 黃色：固定座標 + 各自 InfoWindow（點擊 toggle 開關）
   for (const p of places) {
     const pos = { lat: p.lat, lng: p.lng };
-    const marker = new google.maps.Marker({ map, position: pos, icon: svgYellowPin, title: `${p.en} (${p.jp})` });
-    const iw = new google.maps.InfoWindow({ content: `<b style="font-size:14px;color:#7a5">${p.jp}</b><div>${p.en}</div>` });
+
+    const marker = new google.maps.Marker({
+      map,
+      position: pos,
+      icon: svgYellowPin,
+      title: `${p.en} (${p.jp})`
+    });
+
+    const iw = new google.maps.InfoWindow({
+      content: `<b style="font-size:14px;color:#7a5">${p.jp}</b><div>${p.en}</div>`
+    });
+
+    // 初始：自動打開
     iw.open({ map, anchor: marker });
+
+    let isOpen = true;
+
+    // 點黃色圖標：toggle 開 / 關
+    marker.addListener('click', () => {
+      if (isOpen) {
+        iw.close();
+      } else {
+        iw.open({ map, anchor: marker });
+      }
+      isOpen = !isOpen;
+    });
+
     yellowInfoWindows.push(iw);
     bounds.extend(pos);
   }
