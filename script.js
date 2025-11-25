@@ -163,11 +163,14 @@
       map,
       position: pos,
       icon: svgYellowPin,
-      title: `${p.locales.ja.name} (${p.locales.en.name})`
+      title: `${p.id} - ${p.locales.ja.name} (${p.locales.en.name})`
     });
 
     const iw = new google.maps.InfoWindow({
-      content: `<b style="font-size:14px;color:#7a5">${p.locales.ja.name}</b><div>${p.locales.en.name}</div>`
+      content:
+        `<div style="font-size:11px;color:#777;margin-bottom:2px;">${p.id || ''}</div>` +
+        `<b style="font-size:14px;color:#7a5">${p.locales.ja.name}</b>` +
+        `<div>${p.locales.en.name}</div>`
     });
 
     // 初始打開
@@ -202,8 +205,12 @@
         p.locales.ja.name = newJp;
         p.locales.en.name = newEn;
 
-        marker.setTitle(`${p.locales.ja.name} (${p.locales.en.name})`);
-        iw.setContent(`<b style="font-size:14px;color:#7a5">${p.locales.ja.name}</b><div>${p.locales.en.name}</div>`);
+        marker.setTitle(`${p.id} - ${p.locales.ja.name} (${p.locales.en.name})`);
+        iw.setContent(
+          `<div style="font-size:11px;color:#777;margin-bottom:2px;">ID: ${p.id || ''}</div>` +
+          `<b style="font-size:14px;color:#7a5">${p.locales.ja.name}</b>` +
+          `<div>${p.locales.en.name}</div>`
+        );
         if (!isOpen) {
           iw.open({ map, anchor: marker });
           isOpen = true;
@@ -332,7 +339,7 @@
 
     circle.bindTo('center', marker, 'position');
 
-    const o = { id: groupData.id, placeIds: groupData.placeIds, marker, circle, labelOverlay };
+    const o = { id: groupData.id, placeIds: groupData.placeIds || [], marker, circle, labelOverlay };
     orangeItems.push(o);
 
     // 拖曳時讓 label 跟著位置移動，並同步更新 groups 中的座標
@@ -424,8 +431,12 @@
   // === 橘色控制面板 ===
   const control = document.createElement('div');
   control.style.cssText =
-    'position:fixed;bottom:10px;right:10px;background:#fff;padding:10px;border:1px solid #ccc;border-radius:8px;max-height:60vh;overflow-y:auto;font-family:system-ui;font-size:12px;z-index:99999;';
-  control.innerHTML = `<b style="font-size:13px;">Orange Radius Control</b><br>`;
+    'position:fixed;bottom:10px;right:10px;background:#fff;padding:10px;border:1px solid #ccc;border-radius:8px;max-height:60vh;font-family:system-ui;font-size:12px;z-index:99999;display:flex;flex-direction:column;';
+
+  const controlHeader = document.createElement('div');
+  controlHeader.innerHTML = `<b style="font-size:13px;">Orange Radius Control</b>`;
+  controlHeader.style.flex = '0 0 auto';
+  controlHeader.style.marginBottom = '4px';
 
   // 下載 JSON 小工具
   function downloadJson(filename, obj) {
@@ -469,11 +480,14 @@
 
   toolbar.append(savePlacesBtn, saveGroupsBtn);
 
-  // 中間區塊：所有 group 控制列都塞這裡
+  // 中間區塊：所有 group 控制列都塞這裡（可滾動）
   const groupsContainer = document.createElement('div');
+  groupsContainer.style.flex = '1 1 auto';
+  groupsContainer.style.overflowY = 'auto';
 
-  // 底部 footer：分隔線 + 下載按鈕
+  // 底部 footer：分隔線 + 下載按鈕（固定區塊）
   const footer = document.createElement('div');
+  footer.style.flex = '0 0 auto';
   footer.append(document.createElement('hr'));
   footer.append(toolbar);
 
@@ -485,10 +499,25 @@
     headerRow.style.display = 'flex';
     headerRow.style.alignItems = 'center';
 
-    const nameEl = document.createElement('div');
-    nameEl.textContent = o.id || '';
-    nameEl.style.fontWeight = '500';
-    nameEl.style.flex = '1';
+    // 左側：顯示這個 group 目前包含的 place（chips，可刪除）
+    const namesContainer = document.createElement('div');
+    namesContainer.style.display = 'flex';
+    namesContainer.style.flexWrap = 'wrap';
+    namesContainer.style.gap = '2px';
+    namesContainer.style.flex = '1';
+
+    // 新增成員按鈕（觸發輸入 place id 的 prompt）
+    const addMemberBtn = document.createElement('button');
+    addMemberBtn.type = 'button';
+    addMemberBtn.textContent = '➕';
+    addMemberBtn.style.fontSize = '11px';
+    addMemberBtn.style.padding = '0 4px';
+    addMemberBtn.style.marginLeft = '16px';
+    addMemberBtn.style.cursor = 'pointer';
+    addMemberBtn.style.border = '1px solid #b0d4ff';
+    addMemberBtn.style.borderRadius = '4px';
+    addMemberBtn.style.background = '#e8f3ff';
+    addMemberBtn.style.color = '#0050b3';
 
     // 刪除按鈕
     const deleteBtn = document.createElement('button');
@@ -527,7 +556,120 @@
       printOrangeState();
     };
 
-    headerRow.append(nameEl, deleteBtn);
+    function rebuildPlaceChips() {
+      namesContainer.innerHTML = '';
+
+      if (!Array.isArray(o.placeIds) || o.placeIds.length === 0) {
+        const empty = document.createElement('span');
+        empty.textContent = '(no places)';
+        empty.style.fontSize = '11px';
+        empty.style.color = '#999';
+        namesContainer.appendChild(empty);
+        return;
+      }
+
+      for (const placeId of o.placeIds) {
+        const place = places.find(p => p.id === placeId);
+        const label = place?.locales?.ja?.name || placeId || '';
+
+        const chip = document.createElement('span');
+        chip.style.display = 'inline-flex';
+        chip.style.alignItems = 'center';
+        chip.style.borderRadius = '999px';
+        chip.style.border = '1px solid #ddd';
+        chip.style.padding = '0 4px';
+        chip.style.fontSize = '11px';
+        chip.style.background = '#fafafa';
+
+        const textSpan = document.createElement('span');
+        textSpan.textContent = label;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.textContent = '×';
+        removeBtn.style.marginLeft = '2px';
+        removeBtn.style.border = 'none';
+        removeBtn.style.background = 'transparent';
+        removeBtn.style.cursor = 'pointer';
+        removeBtn.style.fontSize = '11px';
+        removeBtn.style.color = '#b00000';
+
+        removeBtn.onclick = () => {
+          o.placeIds = o.placeIds.filter(id => id !== placeId);
+          const g = groups.find(g => g.id === o.id);
+          if (g) {
+            g.placeIds = o.placeIds.slice();
+          }
+
+          const names = o.placeIds
+            .map(id => {
+              const pl = places.find(p => p.id === id);
+              return pl?.locales?.ja?.name || '';
+            })
+            .filter(Boolean);
+          const newLabel = names.join('、');
+          if (o.marker) o.marker.setTitle(newLabel);
+          if (o.labelOverlay && typeof o.labelOverlay.setText === 'function') {
+            o.labelOverlay.setText(newLabel);
+          }
+
+          rebuildPlaceChips();
+          printOrangeState();
+        };
+
+        chip.append(textSpan, removeBtn);
+        namesContainer.appendChild(chip);
+      }
+    }
+
+    function updateGroupLabelFromPlaces() {
+      const names = (o.placeIds || [])
+        .map(id => {
+          const pl = places.find(p => p.id === id);
+          return pl?.locales?.ja?.name || '';
+        })
+        .filter(Boolean);
+      const newLabel = names.join('、');
+      if (o.marker) o.marker.setTitle(newLabel);
+      if (o.labelOverlay && typeof o.labelOverlay.setText === 'function') {
+        o.labelOverlay.setText(newLabel);
+      }
+    }
+
+    function doAddById(raw) {
+      if (!raw) return;
+      const placeId = raw.trim().toUpperCase();
+      if (!placeId) return;
+
+      const place = places.find(p => p.id === placeId);
+      if (!place) {
+        alert(`找不到 id 為 ${placeId} 的地點`);
+        return;
+      }
+      if (o.placeIds.includes(placeId)) {
+        alert(`這個範圍已經包含 ${placeId}`);
+        return;
+      }
+
+      o.placeIds.push(placeId);
+      const g = groups.find(g => g.id === o.id);
+      if (g) {
+        g.placeIds = Array.from(new Set([...(g.placeIds || []), placeId]));
+      }
+
+      updateGroupLabelFromPlaces();
+      rebuildPlaceChips();
+      printOrangeState();
+    }
+
+    // 點 ➕：用 prompt 輸入 place id 並加入 group
+    addMemberBtn.onclick = () => {
+      const raw = prompt('輸入要加入這個範圍的 place id');
+      if (raw === null) return;
+      doAddById(raw);
+    };
+
+    headerRow.append(namesContainer, addMemberBtn, deleteBtn);
 
     // 下面一行：slider + 距離
     const row = document.createElement('div');
@@ -556,11 +698,7 @@
       // 同步更新 groups 裡對應範圍的 radius
       const pos = o.marker && o.marker.getPosition();
       if (pos) {
-        const g = groups.find(g =>
-          g.name === o.name &&
-          Math.abs(g.lat - +pos.lat().toFixed(6)) < 1e-6 &&
-          Math.abs(g.lng - +pos.lng().toFixed(6)) < 1e-6
-        );
+        const g = groups.find(g => g.id === o.id);
         if (g) g.radius = val;
       }
 
@@ -568,7 +706,9 @@
     };
 
     row.append(input, valueEl);
+
     block.append(headerRow, row);
+    rebuildPlaceChips();
     groupsContainer.append(block);
   }
 
@@ -579,7 +719,8 @@
   }
   if (!bounds.isEmpty()) map.fitBounds(bounds);
 
-  // 控制面板組完所有區塊後，先掛 group 區塊，再掛 footer（內含下載按鈕）
+  // 控制面板組完所有區塊後，先掛 header、group 區塊，再掛 footer（內含下載按鈕）
+  control.append(controlHeader);
   control.append(groupsContainer);
   control.append(footer);
 
