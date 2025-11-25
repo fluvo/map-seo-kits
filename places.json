@@ -1,186 +1,301 @@
 {
-  "QKVRDC": {
-    "locales": {
-      "en": { "name": "Roppongi" },
-      "ja": { "name": "六本木" }
-    },
-    "lat": 35.6628,
-    "lng": 139.731
-  },
-  "LXKGWF": {
-    "locales": {
-      "en": { "name": "Azabu-Juban" },
-      "ja": { "name": "麻布十番" }
-    },
-    "lat": 35.6546,
-    "lng": 139.7351
-  },
-  "UDEMSZ": {
-    "locales": {
-      "en": { "name": "Aoyama" },
-      "ja": { "name": "青山" }
-    },
-    "lat": 35.6646,
-    "lng": 139.722
-  },
-  "NZGQTY": {
-    "locales": {
-      "en": { "name": "Omotesando" },
-      "ja": { "name": "表参道" }
-    },
-    "lat": 35.6655,
-    "lng": 139.7128
-  },
-  "WXUPJN": {
-    "locales": {
-      "en": { "name": "Harajuku" },
-      "ja": { "name": "原宿" }
-    },
-    "lat": 35.6702,
-    "lng": 139.702
-  },
-  "KJZBTR": {
-    "locales": {
-      "en": { "name": "Daikanyama" },
-      "ja": { "name": "代官山" }
-    },
-    "lat": 35.6492,
-    "lng": 139.7036
-  },
-  "HVCMAR": {
-    "locales": {
-      "en": { "name": "Ebisu" },
-      "ja": { "name": "恵比寿" }
-    },
-    "lat": 35.6467,
-    "lng": 139.71
-  },
-  "SPGJNX": {
-    "locales": {
-      "en": { "name": "Yoga" },
-      "ja": { "name": "用賀" }
-    },
-    "lat": 35.6255,
-    "lng": 139.6301
-  },
   "ABQKLE": {
+    "id": "ABQKLE",
     "locales": {
-      "en": { "name": "Futako-Tamagawa" },
-      "ja": { "name": "二子玉川" }
+      "en": {
+        "name": "Futako-Tamagawa"
+      },
+      "ja": {
+        "name": "二子玉川"
+      }
     },
     "lat": 35.6101,
     "lng": 139.6271
   },
-  "VYRLTC": {
-    "locales": {
-      "en": { "name": "Shibuya" },
-      "ja": { "name": "渋谷" }
-    },
-    "lat": 35.658754,
-    "lng": 139.701113
-  },
-  "MPZQFW": {
-    "locales": {
-      "en": { "name": "Ginza" },
-      "ja": { "name": "銀座" }
-    },
-    "lat": 35.671543,
-    "lng": 139.764289
-  },
-  "CNXJVR": {
-    "locales": {
-      "en": { "name": "Yurakucho" },
-      "ja": { "name": "有楽町" }
-    },
-    "lat": 35.675029,
-    "lng": 139.763301
-  },
-  "TGQFBN": {
-    "locales": {
-      "en": { "name": "Shinbashi" },
-      "ja": { "name": "新橋" }
-    },
-    "lat": 35.666313,
-    "lng": 139.758559
-  },
-  "ZKHDPU": {
-    "locales": {
-      "en": { "name": "Tsukiji" },
-      "ja": { "name": "築地" }
-    },
-    "lat": 35.664483,
-    "lng": 139.770946
-  },
-  "RLCPQY": {
-    "locales": {
-      "en": { "name": "Tsukishima" },
-      "ja": { "name": "月島" }
-    },
-    "lat": 35.664021,
-    "lng": 139.783645
-  },
-  "JMFZKS": {
-    "locales": {
-      "en": { "name": "Akasaka" },
-      "ja": { "name": "赤坂" }
-    },
-    "lat": 35.672144,
-    "lng": 139.736449
-  },
   "BQYHND": {
+    "id": "BQYHND",
     "locales": {
-      "en": { "name": "Nishi-Azabu" },
-      "ja": { "name": "西麻布" }
+      "en": {
+        "name": "Nishi-Azabu"
+      },
+      "ja": {
+        "name": "西麻布"
+      }
     },
     "lat": 35.658372,
     "lng": 139.723052
   },
-  "WNEKSU": {
+  "CNXJVR": {
+    "id": "CNXJVR",
     "locales": {
-      "en": { "name": "Hiroo" },
-      "ja": { "name": "広尾" }
+      "en": {
+        "name": "Yurakucho"
+      },
+      "ja": {
+        "name": "有楽町"
+      }
     },
-    "lat": 35.651881,
-    "lng": 139.721313
-  },
-  "XJLCUT": {
-    "locales": {
-      "en": { "name": "Naka-Meguro" },
-      "ja": { "name": "中目黒" }
-    },
-    "lat": 35.640745,
-    "lng": 139.701133
-  },
-  "SDVQHM": {
-    "locales": {
-      "en": { "name": "Sakura-Shimmachi" },
-      "ja": { "name": "桜新町" }
-    },
-    "lat": 35.630805,
-    "lng": 139.643842
-  },
-  "KUPHZA": {
-    "locales": {
-      "en": { "name": "Ikejiri-Ohashi" },
-      "ja": { "name": "池尻大橋" }
-    },
-    "lat": 35.650183,
-    "lng": 139.684279
+    "lat": 35.675029,
+    "lng": 139.763301
   },
   "FGWXNB": {
+    "id": "FGWXNB",
     "locales": {
-      "en": { "name": "Sangenjaya" },
-      "ja": { "name": "三軒茶屋" }
+      "en": {
+        "name": "Sangenjaya"
+      },
+      "ja": {
+        "name": "三軒茶屋"
+      }
     },
     "lat": 35.640837,
     "lng": 139.669087
   },
-  "MLTZQH": {
+  "HVCMAR": {
+    "id": "HVCMAR",
     "locales": {
-      "en": { "name": "Komazawa-Daigaku" },
-      "ja": { "name": "駒沢大学" }
+      "en": {
+        "name": "Ebisu"
+      },
+      "ja": {
+        "name": "恵比寿"
+      }
+    },
+    "lat": 35.6467,
+    "lng": 139.71
+  },
+  "JMFZKS": {
+    "id": "JMFZKS",
+    "locales": {
+      "en": {
+        "name": "Akasaka"
+      },
+      "ja": {
+        "name": "赤坂"
+      }
+    },
+    "lat": 35.672144,
+    "lng": 139.736449
+  },
+  "KJZBTR": {
+    "id": "KJZBTR",
+    "locales": {
+      "en": {
+        "name": "Daikanyama"
+      },
+      "ja": {
+        "name": "代官山"
+      }
+    },
+    "lat": 35.6492,
+    "lng": 139.7036
+  },
+  "KUPHZA": {
+    "id": "KUPHZA",
+    "locales": {
+      "en": {
+        "name": "Ikejiri-Ohashi"
+      },
+      "ja": {
+        "name": "池尻大橋"
+      }
+    },
+    "lat": 35.650183,
+    "lng": 139.684279
+  },
+  "LXKGWF": {
+    "id": "LXKGWF",
+    "locales": {
+      "en": {
+        "name": "Azabu-Juban"
+      },
+      "ja": {
+        "name": "麻布十番"
+      }
+    },
+    "lat": 35.6546,
+    "lng": 139.7351
+  },
+  "MLTZQH": {
+    "id": "MLTZQH",
+    "locales": {
+      "en": {
+        "name": "Komazawa-Daigaku"
+      },
+      "ja": {
+        "name": "駒沢大学"
+      }
     },
     "lat": 35.63278,
     "lng": 139.661663
+  },
+  "MPZQFW": {
+    "id": "MPZQFW",
+    "locales": {
+      "en": {
+        "name": "Ginza"
+      },
+      "ja": {
+        "name": "銀座"
+      }
+    },
+    "lat": 35.671543,
+    "lng": 139.764289
+  },
+  "NZGQTY": {
+    "id": "NZGQTY",
+    "locales": {
+      "en": {
+        "name": "Omotesando"
+      },
+      "ja": {
+        "name": "表参道"
+      }
+    },
+    "lat": 35.6655,
+    "lng": 139.7128
+  },
+  "QKVRDC": {
+    "id": "QKVRDC",
+    "locales": {
+      "en": {
+        "name": "Roppongi"
+      },
+      "ja": {
+        "name": "六本木"
+      }
+    },
+    "lat": 35.6628,
+    "lng": 139.731
+  },
+  "RLCPQY": {
+    "id": "RLCPQY",
+    "locales": {
+      "en": {
+        "name": "Tsukishima"
+      },
+      "ja": {
+        "name": "月島"
+      }
+    },
+    "lat": 35.664021,
+    "lng": 139.783645
+  },
+  "SDVQHM": {
+    "id": "SDVQHM",
+    "locales": {
+      "en": {
+        "name": "Sakura-Shimmachi"
+      },
+      "ja": {
+        "name": "桜新町"
+      }
+    },
+    "lat": 35.630805,
+    "lng": 139.643842
+  },
+  "SPGJNX": {
+    "id": "SPGJNX",
+    "locales": {
+      "en": {
+        "name": "Yoga"
+      },
+      "ja": {
+        "name": "用賀"
+      }
+    },
+    "lat": 35.6255,
+    "lng": 139.6301
+  },
+  "TGQFBN": {
+    "id": "TGQFBN",
+    "locales": {
+      "en": {
+        "name": "Shinbashi"
+      },
+      "ja": {
+        "name": "新橋"
+      }
+    },
+    "lat": 35.666313,
+    "lng": 139.758559
+  },
+  "UDEMSZ": {
+    "id": "UDEMSZ",
+    "locales": {
+      "en": {
+        "name": "Aoyama"
+      },
+      "ja": {
+        "name": "青山"
+      }
+    },
+    "lat": 35.6646,
+    "lng": 139.722
+  },
+  "VYRLTC": {
+    "id": "VYRLTC",
+    "locales": {
+      "en": {
+        "name": "Shibuya"
+      },
+      "ja": {
+        "name": "渋谷"
+      }
+    },
+    "lat": 35.658754,
+    "lng": 139.701113
+  },
+  "WNEKSU": {
+    "id": "WNEKSU",
+    "locales": {
+      "en": {
+        "name": "Hiroo"
+      },
+      "ja": {
+        "name": "広尾"
+      }
+    },
+    "lat": 35.651881,
+    "lng": 139.721313
+  },
+  "WXUPJN": {
+    "id": "WXUPJN",
+    "locales": {
+      "en": {
+        "name": "Harajuku"
+      },
+      "ja": {
+        "name": "原宿"
+      }
+    },
+    "lat": 35.6702,
+    "lng": 139.702
+  },
+  "XJLCUT": {
+    "id": "XJLCUT",
+    "locales": {
+      "en": {
+        "name": "Naka-Meguro"
+      },
+      "ja": {
+        "name": "中目黒"
+      }
+    },
+    "lat": 35.640745,
+    "lng": 139.701133
+  },
+  "ZKHDPU": {
+    "id": "ZKHDPU",
+    "locales": {
+      "en": {
+        "name": "Tsukiji"
+      },
+      "ja": {
+        "name": "築地"
+      }
+    },
+    "lat": 35.664483,
+    "lng": 139.770946
   }
 }
