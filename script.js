@@ -163,11 +163,11 @@
       map,
       position: pos,
       icon: svgYellowPin,
-      title: `${p.locale.name.ja} (${p.locale.name.en})`
+      title: `${p.locales.ja.name} (${p.locales.en.name})`
     });
 
     const iw = new google.maps.InfoWindow({
-      content: `<b style="font-size:14px;color:#7a5">${p.locale.name.ja}</b><div>${p.locale.name.en}</div>`
+      content: `<b style="font-size:14px;color:#7a5">${p.locales.ja.name}</b><div>${p.locales.en.name}</div>`
     });
 
     // 初始打開
@@ -191,18 +191,19 @@
       if (choice === null) return;
 
       if (choice === '1') {
-        const newJp = prompt('重設地點：輸入主要名稱', p.locale?.name?.ja || '');
+        const newJp = prompt('重設地點：輸入主要名稱', p.locales?.ja?.name || '');
         if (newJp === null) return;
-        const newEn = prompt('重設地點：輸入英文名稱', p.locale?.name?.en || '');
+        const newEn = prompt('重設地點：輸入英文名稱', p.locales?.en?.name || '');
         if (newEn === null) return;
 
-        p.locale = p.locale || {};
-        p.locale.name = p.locale.name || {};
-        p.locale.name.ja = newJp;
-        p.locale.name.en = newEn;
+        p.locales = p.locales || {};
+        p.locales.ja = p.locales.ja || {};
+        p.locales.en = p.locales.en || {};
+        p.locales.ja.name = newJp;
+        p.locales.en.name = newEn;
 
-        marker.setTitle(`${p.locale.name.ja} (${p.locale.name.en})`);
-        iw.setContent(`<b style="font-size:14px;color:#7a5">${p.locale.name.ja}</b><div>${p.locale.name.en}</div>`);
+        marker.setTitle(`${p.locales.ja.name} (${p.locales.en.name})`);
+        iw.setContent(`<b style="font-size:14px;color:#7a5">${p.locales.ja.name}</b><div>${p.locales.en.name}</div>`);
         if (!isOpen) {
           iw.open({ map, anchor: marker });
           isOpen = true;
@@ -256,10 +257,12 @@
       id: generatePlaceId(),
       lat,
       lng,
-      locale: {
-        name: {
-          ja,
-          en
+      locales: {
+        ja: {
+          name: ja
+        },
+        en: {
+          name: en
         }
       }
     };
@@ -383,7 +386,7 @@
   // 地圖空白處右鍵 → 選單（新增地點 / 新增範圍）
   map.addListener('rightclick', handleMapRightClick);
 
-  // 特別版 JSON.stringify：key 順序為 id, locale，其餘按字母排序
+  // 特別版 JSON.stringify：key 順序為 id, locales，其餘按字母排序
   function stringifyWithCustomKeyOrder(value, space = 2) {
     function reorderKeys(obj) {
       if (obj === null || typeof obj !== 'object') return obj;
@@ -393,7 +396,7 @@
       }
 
       const keys = Object.keys(obj);
-      const special = ['id', 'locale'].filter(k => keys.includes(k));
+      const special = ['id', 'locales'].filter(k => keys.includes(k));
       const others = keys.filter(k => !special.includes(k)).sort();
 
       const ordered = {};

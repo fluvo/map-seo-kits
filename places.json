@@ -3,10 +3,12 @@
     "id": "QKVRDC",
     "lat": 35.6628,
     "lng": 139.731,
-    "locale": {
-      "name": {
-        "ja": "六本木",
-        "en": "Roppongi"
+    "locales": {
+      "ja": {
+        "name": "六本木"
+      },
+      "en": {
+        "name": "Roppongi"
       }
     }
   },
@@ -14,10 +16,12 @@
     "id": "LXKGWF",
     "lat": 35.6546,
     "lng": 139.7351,
-    "locale": {
-      "name": {
-        "ja": "麻布十番",
-        "en": "Azabu-Juban"
+    "locales": {
+      "ja": {
+        "name": "麻布十番"
+      },
+      "en": {
+        "name": "Azabu-Juban"
       }
     }
   },
@@ -25,10 +29,12 @@
     "id": "UDEMSZ",
     "lat": 35.6646,
     "lng": 139.722,
-    "locale": {
-      "name": {
-        "ja": "青山",
-        "en": "Aoyama"
+    "locales": {
+      "ja": {
+        "name": "青山"
+      },
+      "en": {
+        "name": "Aoyama"
       }
     }
   },
@@ -36,10 +42,12 @@
     "id": "NZGQTY",
     "lat": 35.6655,
     "lng": 139.7128,
-    "locale": {
-      "name": {
-        "ja": "表参道",
-        "en": "Omotesando"
+    "locales": {
+      "ja": {
+        "name": "表参道"
+      },
+      "en": {
+        "name": "Omotesando"
       }
     }
   },
@@ -47,10 +55,12 @@
     "id": "WXUPJN",
     "lat": 35.6702,
     "lng": 139.702,
-    "locale": {
-      "name": {
-        "ja": "原宿",
-        "en": "Harajuku"
+    "locales": {
+      "ja": {
+        "name": "原宿"
+      },
+      "en": {
+        "name": "Harajuku"
       }
     }
   },
@@ -58,10 +68,12 @@
     "id": "KJZBTR",
     "lat": 35.6492,
     "lng": 139.7036,
-    "locale": {
-      "name": {
-        "ja": "代官山",
-        "en": "Daikanyama"
+    "locales": {
+      "ja": {
+        "name": "代官山"
+      },
+      "en": {
+        "name": "Daikanyama"
       }
     }
   },
@@ -69,10 +81,12 @@
     "id": "HVCMAR",
     "lat": 35.6467,
     "lng": 139.71,
-    "locale": {
-      "name": {
-        "ja": "恵比寿",
-        "en": "Ebisu"
+    "locales": {
+      "ja": {
+        "name": "恵比寿"
+      },
+      "en": {
+        "name": "Ebisu"
       }
     }
   },
@@ -80,10 +94,12 @@
     "id": "SPGJNX",
     "lat": 35.6255,
     "lng": 139.6301,
-    "locale": {
-      "name": {
-        "ja": "用賀",
-        "en": "Yoga"
+    "locales": {
+      "ja": {
+        "name": "用賀"
+      },
+      "en": {
+        "name": "Yoga"
       }
     }
   },
@@ -91,10 +107,12 @@
     "id": "ABQKLE",
     "lat": 35.6101,
     "lng": 139.6271,
-    "locale": {
-      "name": {
-        "ja": "二子玉川",
-        "en": "Futako-Tamagawa"
+    "locales": {
+      "ja": {
+        "name": "二子玉川"
+      },
+      "en": {
+        "name": "Futako-Tamagawa"
       }
     }
   },
@@ -102,10 +120,12 @@
     "id": "VYRLTC",
     "lat": 35.658754,
     "lng": 139.701113,
-    "locale": {
-      "name": {
-        "ja": "渋谷",
-        "en": "Shibuya"
+    "locales": {
+      "ja": {
+        "name": "渋谷"
+      },
+      "en": {
+        "name": "Shibuya"
       }
     }
   },
@@ -113,10 +133,12 @@
     "id": "MPZQFW",
     "lat": 35.671543,
     "lng": 139.764289,
-    "locale": {
-      "name": {
-        "ja": "銀座",
-        "en": "Ginza"
+    "locales": {
+      "ja": {
+        "name": "銀座"
+      },
+      "en": {
+        "name": "Ginza"
       }
     }
   },
@@ -124,10 +146,12 @@
     "id": "CNXJVR",
     "lat": 35.675029,
     "lng": 139.763301,
-    "locale": {
-      "name": {
-        "ja": "有楽町",
-        "en": "Yurakucho"
+    "locales": {
+      "ja": {
+        "name": "有楽町"
+      },
+      "en": {
+        "name": "Yurakucho"
       }
     }
   },
@@ -135,10 +159,12 @@
     "id": "TGQFBN",
     "lat": 35.666313,
     "lng": 139.758559,
-    "locale": {
-      "name": {
-        "ja": "新橋",
-        "en": "Shinbashi"
+    "locales": {
+      "ja": {
+        "name": "新橋"
+      },
+      "en": {
+        "name": "Shinbashi"
       }
     }
   },
@@ -146,10 +172,12 @@
     "id": "ZKHDPU",
     "lat": 35.664483,
     "lng": 139.770946,
-    "locale": {
-      "name": {
-        "ja": "築地",
-        "en": "Tsukiji"
+    "locales": {
+      "ja": {
+        "name": "築地"
+      },
+      "en": {
+        "name": "Tsukiji"
       }
     }
   },
@@ -157,10 +185,12 @@
     "id": "RLCPQY",
     "lat": 35.664021,
     "lng": 139.783645,
-    "locale": {
-      "name": {
-        "ja": "月島",
-        "en": "Tsukishima"
+    "locales": {
+      "ja": {
+        "name": "月島"
+      },
+      "en": {
+        "name": "Tsukishima"
       }
     }
   },
@@ -168,10 +198,12 @@
     "id": "JMFZKS",
     "lat": 35.672144,
     "lng": 139.736449,
-    "locale": {
-      "name": {
-        "ja": "赤坂",
-        "en": "Akasaka"
+    "locales": {
+      "ja": {
+        "name": "赤坂"
+      },
+      "en": {
+        "name": "Akasaka"
       }
     }
   },
@@ -179,10 +211,12 @@
     "id": "BQYHND",
     "lat": 35.658372,
     "lng": 139.723052,
-    "locale": {
-      "name": {
-        "ja": "西麻布",
-        "en": "Nishi-Azabu"
+    "locales": {
+      "ja": {
+        "name": "西麻布"
+      },
+      "en": {
+        "name": "Nishi-Azabu"
       }
     }
   },
@@ -190,10 +224,12 @@
     "id": "WNEKSU",
     "lat": 35.651881,
     "lng": 139.721313,
-    "locale": {
-      "name": {
-        "ja": "広尾",
-        "en": "Hiroo"
+    "locales": {
+      "ja": {
+        "name": "広尾"
+      },
+      "en": {
+        "name": "Hiroo"
       }
     }
   },
@@ -201,10 +237,12 @@
     "id": "XJLCUT",
     "lat": 35.640745,
     "lng": 139.701133,
-    "locale": {
-      "name": {
-        "ja": "中目黒",
-        "en": "Naka-Meguro"
+    "locales": {
+      "ja": {
+        "name": "中目黒"
+      },
+      "en": {
+        "name": "Naka-Meguro"
       }
     }
   },
@@ -212,10 +250,12 @@
     "id": "SDVQHM",
     "lat": 35.630805,
     "lng": 139.643842,
-    "locale": {
-      "name": {
-        "ja": "桜新町",
-        "en": "Sakura-Shimmachi"
+    "locales": {
+      "ja": {
+        "name": "桜新町"
+      },
+      "en": {
+        "name": "Sakura-Shimmachi"
       }
     }
   },
@@ -223,10 +263,12 @@
     "id": "KUPHZA",
     "lat": 35.650183,
     "lng": 139.684279,
-    "locale": {
-      "name": {
-        "ja": "池尻大橋",
-        "en": "Ikejiri-Ohashi"
+    "locales": {
+      "ja": {
+        "name": "池尻大橋"
+      },
+      "en": {
+        "name": "Ikejiri-Ohashi"
       }
     }
   },
@@ -234,10 +276,12 @@
     "id": "FGWXNB",
     "lat": 35.640837,
     "lng": 139.669087,
-    "locale": {
-      "name": {
-        "ja": "三軒茶屋",
-        "en": "Sangenjaya"
+    "locales": {
+      "ja": {
+        "name": "三軒茶屋"
+      },
+      "en": {
+        "name": "Sangenjaya"
       }
     }
   },
@@ -245,10 +289,12 @@
     "id": "MLTZQH",
     "lat": 35.63278,
     "lng": 139.661663,
-    "locale": {
-      "name": {
-        "ja": "駒沢大学",
-        "en": "Komazawa-Daigaku"
+    "locales": {
+      "ja": {
+        "name": "駒沢大学"
+      },
+      "en": {
+        "name": "Komazawa-Daigaku"
       }
     }
   }
