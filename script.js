@@ -146,7 +146,7 @@
   const yellowInfoWindows = [];
   const orangeItems = [];
 
-  function generatePlaceId() {
+  function generateId() {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let id = '';
     for (let i = 0; i < 6; i++) {
@@ -254,7 +254,7 @@
     if (en === null) return;
 
     const newPlace = {
-      id: generatePlaceId(),
+      id: generateId(),
       lat,
       lng,
       locales: {
@@ -276,15 +276,33 @@
   function buildOrangeGroupOnMap(groupData) {
     const pos = { lat: groupData.lat, lng: groupData.lng };
 
+    const placeNameById = (id) => {
+      const place = places.find(pl => pl.id === id);
+      return place?.locales?.ja?.name || '';
+    };
+
+    const computeGroupLabel = (g) => {
+      if (Array.isArray(g.placeIds) && g.placeIds.length > 0) {
+        const names = g.placeIds
+          .map(placeNameById)
+          .filter(Boolean);
+        if (names.length) return names.join('、');
+      }
+      return g.name || '';
+    };
+
+    const labelText = computeGroupLabel(groupData);
+
     // 若尚未被加入 groups（例如初始化以外的情境），確保 groups 也有這筆資料
     const exists = groups.some(g =>
       Math.abs(g.lat - groupData.lat) < 1e-6 &&
       Math.abs(g.lng - groupData.lng) < 1e-6 &&
-      g.name === groupData.name
+      g.radius === groupData.radius
     );
     if (!exists) {
       groups.push({
-        name: groupData.name,
+        id: groupData.id,
+        placeIds: groupData.placeIds,
         lat: groupData.lat,
         lng: groupData.lng,
         radius: groupData.radius
@@ -296,10 +314,10 @@
       position: pos,
       icon: svgOrangeDot,
       draggable: true,
-      title: groupData.name
+      title: labelText
     });
 
-    const labelOverlay = new OrangeLabel(new google.maps.LatLng(pos.lat, pos.lng), groupData.name, map);
+    const labelOverlay = new OrangeLabel(new google.maps.LatLng(pos.lat, pos.lng), labelText, map);
 
     const circle = new google.maps.Circle({
       map,
@@ -314,7 +332,7 @@
 
     circle.bindTo('center', marker, 'position');
 
-    const o = { name: groupData.name, marker, circle, labelOverlay };
+    const o = { id: groupData.id, placeIds: groupData.placeIds, marker, circle, labelOverlay };
     orangeItems.push(o);
 
     // 拖曳時讓 label 跟著位置移動，並同步更新 groups 中的座標
@@ -323,11 +341,7 @@
       if (currentPos) {
         labelOverlay.setPosition(currentPos);
 
-        const gx = groups.find(g =>
-          g.name === o.name &&
-          Math.abs(g.lat - groupData.lat) < 1e-6 &&
-          Math.abs(g.lng - groupData.lng) < 1e-6
-        );
+        const gx = groups.find(g => g.id === o.id);
         if (gx) {
           gx.lat = +currentPos.lat().toFixed(6);
           gx.lng = +currentPos.lng().toFixed(6);
@@ -357,10 +371,7 @@
     const lat = +latLng.lat().toFixed(6);
     const lng = +latLng.lng().toFixed(6);
 
-    const name = prompt('新增範圍：輸入名稱', defaultName);
-    if (name === null) return;
-
-    const groupData = { name, lat, lng, radius: defaultRadius };
+    const groupData = { id: generateId(), placeIds: [], lat, lng, radius: defaultRadius };
 
     const { marker } = buildOrangeGroupOnMap(groupData);
     bounds.extend(marker.getPosition());
@@ -396,7 +407,7 @@
       }
 
       const keys = Object.keys(obj);
-      const special = ['id', 'locales'].filter(k => keys.includes(k));
+      const special = ['id', 'locales', 'placeIds'].filter(k => keys.includes(k));
       const others = keys.filter(k => !special.includes(k)).sort();
 
       const ordered = {};
@@ -475,86 +486,9 @@
     headerRow.style.alignItems = 'center';
 
     const nameEl = document.createElement('div');
-    nameEl.textContent = o.name;
+    nameEl.textContent = o.id || '';
     nameEl.style.fontWeight = '500';
     nameEl.style.flex = '1';
-
-    const editBtn = document.createElement('button');
-    editBtn.type = 'button';
-    editBtn.textContent = '✏️';
-    editBtn.style.fontSize = '11px';
-    editBtn.style.padding = '0 4px';
-    editBtn.style.marginLeft = '6px';
-    editBtn.style.cursor = 'pointer';
-    editBtn.style.border = '1px solid #ddd';
-    editBtn.style.borderRadius = '4px';
-    editBtn.style.background = '#f8f8f8';
-
-    // 點 ✏️ → 名稱變成 input，可按 Enter 確認
-    editBtn.onclick = () => {
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.value = o.name;
-      input.style.fontSize = '11px';
-      input.style.flex = '1';
-      input.style.padding = '1px 3px';
-      input.style.border = '1px solid #ccc';
-      input.style.borderRadius = '3px';
-
-      // 用 input 暫時取代 nameEl
-      headerRow.replaceChild(input, nameEl);
-      input.focus();
-      input.select();
-
-      const finish = (commit) => {
-        let newName = o.name;
-        if (commit) {
-          const trimmed = input.value.trim();
-          if (trimmed) newName = trimmed;
-        }
-
-        // 更新物件本身
-        const oldName = o.name;
-        o.name = newName;
-        nameEl.textContent = newName;
-
-        // 更新 marker title
-        if (o.marker) o.marker.setTitle(newName);
-
-        // 更新地圖上的白底 label
-        if (o.labelOverlay && typeof o.labelOverlay.setText === 'function') {
-          o.labelOverlay.setText(newName);
-        }
-
-        // 同步更新 groups 裡對應的名稱
-        const pos = o.marker && o.marker.getPosition();
-        if (pos) {
-          const gx = groups.find(g =>
-            g.name === oldName &&
-            Math.abs(g.lat - +pos.lat().toFixed(6)) < 1e-6 &&
-            Math.abs(g.lng - +pos.lng().toFixed(6)) < 1e-6
-          );
-          if (gx) gx.name = newName;
-        }
-
-        // 換回顯示 div
-        headerRow.replaceChild(nameEl, input);
-
-        // 讓 console 輸出的 JSON 也用新名稱
-        printOrangeState();
-      };
-
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          finish(true);
-        } else if (e.key === 'Escape') {
-          finish(false);
-        }
-      });
-
-      // 失焦也當作確認（用現在 input 的內容）
-      input.addEventListener('blur', () => finish(true));
-    };
 
     // 刪除按鈕
     const deleteBtn = document.createElement('button');
@@ -570,7 +504,7 @@
     deleteBtn.style.color = '#b00000';
 
     deleteBtn.onclick = () => {
-      const ok = confirm(`要刪除範圍「${o.name}」嗎？`);
+      const ok = confirm(`要刪除這個範圍嗎？`);
       if (!ok) return;
 
       // 從地圖移除
@@ -584,15 +518,8 @@
       const idx = orangeItems.indexOf(o);
       if (idx >= 0) orangeItems.splice(idx, 1);
 
-      const pos = o.marker && o.marker.getPosition();
-      if (pos) {
-        const gIdx = groups.findIndex(g =>
-          g.name === o.name &&
-          Math.abs(g.lat - +pos.lat().toFixed(6)) < 1e-6 &&
-          Math.abs(g.lng - +pos.lng().toFixed(6)) < 1e-6
-        );
-        if (gIdx >= 0) groups.splice(gIdx, 1);
-      }
+      const gIdx = groups.findIndex(g => g.id === o.id);
+      if (gIdx >= 0) groups.splice(gIdx, 1);
 
       // 從面板移除 UI 區塊
       block.remove();
@@ -600,7 +527,7 @@
       printOrangeState();
     };
 
-    headerRow.append(nameEl, editBtn, deleteBtn);
+    headerRow.append(nameEl, deleteBtn);
 
     // 下面一行：slider + 距離
     const row = document.createElement('div');
@@ -662,7 +589,8 @@
   function printOrangeState() {
     const arr = orangeItems.map(o => {
       const pos = o.marker.getPosition();
-      return { name:o.name, lat:+pos.lat().toFixed(6), lng:+pos.lng().toFixed(6), radius:Math.round(o.circle.getRadius()) };
+      const g = groups.find(g => g.id === o.id) || {};
+      return { id:g.id, placeIds:g.placeIds, lat:+pos.lat().toFixed(6), lng:+pos.lng().toFixed(6), radius:Math.round(o.circle.getRadius()) };
     });
     console.clear();
     console.log(stringifyWithCustomKeyOrder(arr, 2));

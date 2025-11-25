@@ -1,42 +1,79 @@
 [
   {
-    "name": "渋谷",
+    "id": "QZPLMH",
+    "placeIds": [
+      "VYRLTC"
+    ],
     "lat": 35.658304,
     "lng": 139.70066,
     "radius": 1600
   },
   {
-    "name": "赤坂、六本木、麻布十番、西麻布",
+    "id": "KXTJRB",
+    "placeIds": [
+      "JMFZKS",
+      "QKVRDC",
+      "LXKGWF",
+      "BQYHND"
+    ],
     "lat": 35.663003,
     "lng": 139.733383,
     "radius": 1600
   },
   {
-    "name": "原宿、青山、表参道",
+    "id": "VHGWNC",
+    "placeIds": [
+      "WXUPJN",
+      "UDEMSZ",
+      "NZGQTY"
+    ],
     "lat": 35.666896,
     "lng": 139.711701,
     "radius": 1300
   },
   {
-    "name": "恵比寿、中目黒、代官山、広尾",
+    "id": "LMQZFD",
+    "placeIds": [
+      "HVCMAR",
+      "XJLCUT",
+      "KJZBTR",
+      "WNEKSU"
+    ],
     "lat": 35.645078,
     "lng": 139.711554,
     "radius": 1600
   },
   {
-    "name": "桜新町、用賀、二子玉川",
+    "id": "SWBKJE",
+    "placeIds": [
+      "SDVQHM",
+      "SPGJNX",
+      "ABQKLE"
+    ],
     "lat": 35.619381,
     "lng": 139.634894,
     "radius": 2300
   },
   {
-    "name": "池尻大橋、三軒茶屋、駒沢大学",
+    "id": "PRXHNU",
+    "placeIds": [
+      "KUPHZA",
+      "FGWXNB",
+      "MLTZQH"
+    ],
     "lat": 35.641499,
     "lng": 139.672435,
     "radius": 2100
   },
   {
-    "name": "銀座、有楽町、新橋、築地、月島",
+    "id": "BDTJQY",
+    "placeIds": [
+      "MPZQFW",
+      "CNXJVR",
+      "TGQFBN",
+      "ZKHDPU",
+      "RLCPQY"
+    ],
     "lat": 35.665873,
     "lng": 139.768647,
     "radius": 1700
