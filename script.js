@@ -6,12 +6,24 @@
 // @author       You
 // @match        https://www.google.com/maps/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=google.com
-// @grant        none
+// @grant        GM_getValue
+// @grant        GM_setValue
+// @grant        GM_deleteValue
 // ==/UserScript==
 
 (async () => {
-  // ======= 可調整 =======
-  const API_KEY = await GM_getValue('API_KEY', null);
+  let API_KEY = await GM_getValue('API_KEY', null);
+  
+  if (!API_KEY) {
+    const inputKey = prompt('請輸入 Google Maps API Key');
+    if (inputKey) {
+      API_KEY = inputKey.trim();
+      if (API_KEY) {
+        await GM_setValue('API_KEY', API_KEY);
+      }
+    }
+  }
+
   const defaultCenter = { lat: 35.658581, lng: 139.745438 }; // 東京塔
 
   // get places
@@ -476,6 +488,23 @@
   };
 
   toolbar.append(savePlacesBtn, saveGroupsBtn);
+
+  const resetKeyBtn = document.createElement('button');
+  resetKeyBtn.type = 'button';
+  resetKeyBtn.textContent = '🗑 重置';
+  resetKeyBtn.style.fontSize = '11px';
+  resetKeyBtn.style.padding = '2px 6px';
+  resetKeyBtn.style.cursor = 'pointer';
+  resetKeyBtn.style.marginLeft = '4px';
+
+  resetKeyBtn.onclick = async () => {
+    const ok = confirm('確定要重置 API Key 嗎？下次載入會再次要求輸入。');
+    if (!ok) return;
+    await GM_deleteValue('API_KEY');
+    alert('API Key 已重置，下次重新載入頁面會再詢問。');
+  };
+
+  toolbar.append(resetKeyBtn);
 
   // 中間區塊：所有 group 控制列都塞這裡（可滾動）
   const groupsContainer = document.createElement('div');
