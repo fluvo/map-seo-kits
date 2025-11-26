@@ -11,15 +11,15 @@
 
 (async () => {
   // ======= 可調整 =======
-  const API_KEY = 'AIzaSyD80RVCd4Em7_hQ8NPrt7W2HlsKouvxpUA';
+  const API_KEY = await GM_getValue('API_KEY', null);
   const defaultCenter = { lat: 35.658581, lng: 139.745438 }; // 東京塔
 
   // get places
-  const places = await fetch('https://raw.githubusercontent.com/fluvo/place-group-kits/refs/heads/main/places.json')
+  const places = await fetch('https://raw.githubusercontent.com/fluvo/map-seo-kits/refs/heads/main/places.json')
     .then(response => response.json());
 
   // get groups
-  const groups = await fetch('https://raw.githubusercontent.com/fluvo/place-group-kits/refs/heads/main/groups.json')
+  const groups = await fetch('https://raw.githubusercontent.com/fluvo/map-seo-kits/refs/heads/main/groups.json')
     .then(response => response.json());
 
   // ======================
