@@ -1,71 +1,71 @@
 {
-  "BDTJ": {
+  "bdtj": {
     "placeIds": [
-      "MPZQFW",
-      "CNXJVR",
-      "TGQFBN",
-      "ZKHDPU",
-      "RLCPQY"
+      "mpzqfw",
+      "cnxjvr",
+      "tgqfbn",
+      "zkhdpu",
+      "rlcpqy"
     ],
     "lat": 35.665873,
     "lng": 139.768647,
     "radius": 1700
   },
-  "KXTJ": {
+  "kxtj": {
     "placeIds": [
-      "JMFZKS",
-      "QKVRDC",
-      "LXKGWF",
-      "BQYHND"
+      "jmfzks",
+      "qkvrdc",
+      "lxkgwf",
+      "bqyhnd"
     ],
     "lat": 35.663003,
     "lng": 139.733383,
     "radius": 1600
   },
-  "LMQZ": {
+  "lmqz": {
     "placeIds": [
-      "HVCMAR",
-      "XJLCUT",
-      "KJZBTR",
-      "WNEKSU"
+      "hvcmar",
+      "xjlcut",
+      "kjzbtr",
+      "wneksu"
     ],
     "lat": 35.645078,
     "lng": 139.711554,
     "radius": 1600
   },
-  "PRXH": {
+  "prxh": {
     "placeIds": [
-      "KUPHZA",
-      "FGWXNB",
-      "MLTZQH"
+      "kuphza",
+      "fgwxnb",
+      "mltzqh"
     ],
     "lat": 35.641499,
     "lng": 139.672435,
     "radius": 2100
   },
-  "QZPL": {
+  "qzpl": {
     "placeIds": [
-      "VYRLTC"
+      "vyrltc"
     ],
     "lat": 35.658304,
     "lng": 139.70066,
     "radius": 1600
   },
-  "SWBK": {
+  "swbk": {
     "placeIds": [
-      "SDVQHM",
-      "SPGJNX",
-      "ABQKLE"
+      "sdvqhm",
+      "spgjnx",
+      "abqkle"
     ],
     "lat": 35.619381,
     "lng": 139.634894,
     "radius": 2300
   },
-  "VHGW": {
+  "vhgw": {
     "placeIds": [
-      "WXUPJN",
-      "UDEMSZ",
-      "NZGQTY"
+      "wxupjn",
+      "udemsz",
+      "nzgqty"
     ],
     "lat": 35.666896,
     "lng": 139.711701,

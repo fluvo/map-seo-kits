@@ -1,5 +1,5 @@
 {
-  "ABQKLE": {
+  "abqkle": {
     "id": "ABQKLE",
     "countryCode": "JP",
     "areaCode": "13112",
@@ -14,7 +14,7 @@
     "lat": 35.6101,
     "lng": 139.6271
   },
-  "BQYHND": {
+  "bqyhnd": {
     "id": "BQYHND",
     "countryCode": "JP",
     "areaCode": "13103",
@@ -29,7 +29,7 @@
     "lat": 35.658372,
     "lng": 139.723052
   },
-  "CNXJVR": {
+  "cnxjvr": {
     "id": "CNXJVR",
     "countryCode": "JP",
     "areaCode": "13101",
@@ -44,7 +44,7 @@
     "lat": 35.675029,
     "lng": 139.763301
   },
-  "FGWXNB": {
+  "fgwxnb": {
     "id": "FGWXNB",
     "countryCode": "JP",
     "areaCode": "13112",
@@ -59,7 +59,7 @@
     "lat": 35.640837,
     "lng": 139.669087
   },
-  "HVCMAR": {
+  "hvcmar": {
     "id": "HVCMAR",
     "countryCode": "JP",
     "areaCode": "13113",
@@ -74,7 +74,7 @@
     "lat": 35.6467,
     "lng": 139.71
   },
-  "JMFZKS": {
+  "jmfzks": {
     "id": "JMFZKS",
     "countryCode": "JP",
     "areaCode": "13103",
@@ -89,7 +89,7 @@
     "lat": 35.672144,
     "lng": 139.736449
   },
-  "KJZBTR": {
+  "kjzbtr": {
     "id": "KJZBTR",
     "countryCode": "JP",
     "areaCode": "13113",
@@ -104,7 +104,7 @@
     "lat": 35.6492,
     "lng": 139.7036
   },
-  "KUPHZA": {
+  "kuphza": {
     "id": "KUPHZA",
     "countryCode": "JP",
     "areaCode": "13112",
@@ -119,7 +119,7 @@
     "lat": 35.650183,
     "lng": 139.684279
   },
-  "LXKGWF": {
+  "lxkgwf": {
     "id": "LXKGWF",
     "countryCode": "JP",
     "areaCode": "13103",
@@ -134,7 +134,7 @@
     "lat": 35.6546,
     "lng": 139.7351
   },
-  "MLTZQH": {
+  "mltzqh": {
     "id": "MLTZQH",
     "countryCode": "JP",
     "areaCode": "13112",
@@ -149,7 +149,7 @@
     "lat": 35.63278,
     "lng": 139.661663
   },
-  "MPZQFW": {
+  "mpzqfw": {
     "id": "MPZQFW",
     "countryCode": "JP",
     "areaCode": "13102",
@@ -164,7 +164,7 @@
     "lat": 35.671543,
     "lng": 139.764289
   },
-  "NZGQTY": {
+  "nzgqty": {
     "id": "NZGQTY",
     "countryCode": "JP",
     "areaCode": "13113",
@@ -179,7 +179,7 @@
     "lat": 35.6655,
     "lng": 139.7128
   },
-  "QKVRDC": {
+  "qkvrdc": {
     "id": "QKVRDC",
     "countryCode": "JP",
     "areaCode": "13103",
@@ -194,7 +194,7 @@
     "lat": 35.6628,
     "lng": 139.731
   },
-  "RLCPQY": {
+  "rlcpqy": {
     "id": "RLCPQY",
     "countryCode": "JP",
     "areaCode": "13102",
@@ -209,7 +209,7 @@
     "lat": 35.664021,
     "lng": 139.783645
   },
-  "SDVQHM": {
+  "sdvqhm": {
     "id": "SDVQHM",
     "countryCode": "JP",
     "areaCode": "13112",
@@ -224,7 +224,7 @@
     "lat": 35.630805,
     "lng": 139.643842
   },
-  "SPGJNX": {
+  "spgjnx": {
     "id": "SPGJNX",
     "countryCode": "JP",
     "areaCode": "13112",
@@ -239,7 +239,7 @@
     "lat": 35.6255,
     "lng": 139.6301
   },
-  "TGQFBN": {
+  "tgqfbn": {
     "id": "TGQFBN",
     "countryCode": "JP",
     "areaCode": "13103",
@@ -254,7 +254,7 @@
     "lat": 35.666313,
     "lng": 139.758559
   },
-  "UDEMSZ": {
+  "udemsz": {
     "id": "UDEMSZ",
     "countryCode": "JP",
     "areaCode": "13103",
@@ -269,7 +269,7 @@
     "lat": 35.6646,
     "lng": 139.722
   },
-  "VYRLTC": {
+  "vyrltc": {
     "id": "VYRLTC",
     "countryCode": "JP",
     "areaCode": "13113",
@@ -284,7 +284,7 @@
     "lat": 35.658754,
     "lng": 139.701113
   },
-  "WNEKSU": {
+  "wneksu": {
     "id": "WNEKSU",
     "countryCode": "JP",
     "areaCode": "13113",
@@ -299,7 +299,7 @@
     "lat": 35.651881,
     "lng": 139.721313
   },
-  "WXUPJN": {
+  "wxupjn": {
     "id": "WXUPJN",
     "countryCode": "JP",
     "areaCode": "13113",
@@ -314,7 +314,7 @@
     "lat": 35.6702,
     "lng": 139.702
   },
-  "XJLCUT": {
+  "xjlcut": {
     "id": "XJLCUT",
     "countryCode": "JP",
     "areaCode": "13110",
@@ -329,7 +329,7 @@
     "lat": 35.640745,
     "lng": 139.701133
   },
-  "ZKHDPU": {
+  "zkhdpu": {
     "id": "ZKHDPU",
     "countryCode": "JP",
     "areaCode": "13102",
